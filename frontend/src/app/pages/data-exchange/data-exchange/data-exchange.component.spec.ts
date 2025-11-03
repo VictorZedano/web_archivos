@@ -10,12 +10,13 @@ describe('DataExchangeComponent', () => {
     await TestBed.configureTestingModule({
       imports: [DataExchangeComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(DataExchangeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+
 
   it('should create', () => {
     expect(component).toBeTruthy();
