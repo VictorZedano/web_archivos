@@ -1,29 +1,17 @@
 /* --- GENERAL --- */
 
 body {
-
   font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
   background-color: #f4f7fc;
-
   color: #333;
-
   margin: 0;
-
   padding: 0;
-
 }
 
-
-
 .main-content-container {
-
   max-width: 1400px;
-
   margin: 0 auto;
-
   padding: 30px 40px;
-
 }
 
 
@@ -31,153 +19,79 @@ body {
 /* --- FILTROS --- */
 
 .acciones-container {
-
   display: flex;
-
   justify-content: space-between;
-
   align-items: center;
-
   margin-bottom: 30px;
-
   padding: 15px;
-
   background-color: #ffffff;
-
   border-radius: 12px;
-
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-
 }
-
-
 
 .filtros-principales {
-
   display: flex;
-
   gap: 12px;
-
   flex-grow: 1;
-
   align-items: center;
-
   width: 100%;
-
 }
-
-
 
 .search-bar,
-
 .document-filter-input,
-
 .date-input-wrapper {
-
   padding: 10px 15px;
-
   border: 1px solid #d1d5db;
-
   border-radius: 8px;
-
   font-size: 0.95rem;
-
   transition: border-color 0.3s;
-
 }
-
-
 
 .search-bar {
-
   flex: 1.5;
-
   min-width: 180px;
-
 }
-
-
 
 .document-filter-input {
-
   flex: 2;
-
   min-width: 150px;
-
 }
-
-
 
 .date-input-wrapper {
-
   flex: 1;
-
   min-width: 120px;
-
   padding: 0;
-
   border: 1px solid #d1d5db;
-
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
 }
-
-
 
 .date-input-wrapper label {
-
   font-weight: 600;
-
   color: #4b5563;
-
   font-size: 0.9rem;
-
   padding-left: 10px;
-
 }
-
-
 
 .date-input-wrapper input {
-
   border: none;
-
   padding: 10px;
-
   font-size: 0.95rem;
-
   width: 100%;
-
   text-align: right;
-
   background: transparent;
-
 }
-
-
 
 .date-input-wrapper input:focus {
-
   outline: none;
-
 }
 
-
-
 .search-bar:focus,
-
 .document-filter-input:focus,
-
 .date-input-wrapper:focus-within {
-
   border-color: #7b1fa2;
-
   box-shadow: 0 0 5px rgba(123, 31, 162, 0.2);
-
 }
 
 
@@ -185,39 +99,22 @@ body {
 /* --- BOTÓN BUSCAR --- */
 
 .btn-buscar {
-
   height: 40px;
-
   background-color: #6a1b9a;
-
   color: #fff;
-
   padding: 0 18px;
-
   border-radius: 8px;
-
   font-weight: 600;
-
   cursor: pointer;
-
   transition: all 0.25s ease;
-
   display: flex;
-
   align-items: center;
-
   gap: 8px;
-
 }
 
-
-
 .btn-buscar:hover {
-
   background-color: #5d1488;
-
   transform: translateY(-1px);
-
 }
 
 
@@ -225,237 +122,124 @@ body {
 /* --- TABLA --- */
 
 .tabla-container {
-
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-
   border-radius: 12px;
-
   overflow-x: auto;
-
   background: #fff;
-
 }
-
-
 
 table {
-
   width: 100%;
-
   border-collapse: collapse;
-
 }
-
-
 
 th {
-
   background: #7b1fa2;
-
-  color: white;
-
+  color: rgb(58, 58, 58);
   padding: 12px 10px;
-
   text-align: center;
-
   font-size: 0.85rem;
-
   font-weight: 600;
-
   letter-spacing: 0.5px;
-
   white-space: nowrap;
-
 }
-
-
 
 td {
-
   padding: 10px 10px;
-
   border-bottom: 1px solid #e5e7eb;
-
   font-size: 0.85rem;
-
   color: #4b5563;
-
   text-align: center;
-
   white-space: nowrap;
-
 }
-
-
 
 tr:nth-child(even) {
-
   background-color: #f9fafb;
-
 }
-
-
 
 tr:hover td {
-
   background-color: #f3e5f5;
-
   transition: background-color 0.2s ease;
-
 }
-
 
 
 /* --- BOTÓN DE UBICACIÓN --- */
-
 .btn-ubicacion {
-
   background: transparent;
-
   border: none;
-
   cursor: pointer;
-
   color: #6a1b9a;
-
   font-size: 18px;
-
   transition: color 0.2s ease;
-
 }
-
-
 
 .btn-ubicacion:hover {
-
   color: #ff6f00;
-
 }
-
 
 
 /* --- MODAL --- */
-
 .modal-overlay {
-
   position: fixed;
-
   top: 0;
-
   left: 0;
-
   width: 100%;
-
   height: 100%;
-
   background: rgba(0, 0, 0, 0.5);
-
   display: flex;
-
   justify-content: center;
-
   align-items: center;
-
   z-index: 9999;
-
 }
-
-
 
 .modal-content {
-
   background: #ffffff;
-
   border-radius: 12px;
-
   padding: 25px 30px;
-
   width: 360px;
-
   text-align: center;
-
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-
   animation: modalFadeIn 0.3s ease;
-
 }
-
-
 
 .modal-content h3 {
-
   color: #6a1b9a;
-
   margin-bottom: 15px;
-
   font-size: 1.2rem;
-
 }
-
-
 
 .modal-info p {
-
   margin: 8px 0;
-
   font-size: 0.95rem;
-
   color: #333;
-
 }
-
-
 
 .btn-cerrar {
-
   background-color: #ff6f00;
-
   color: white;
-
   border: none;
-
   padding: 8px 16px;
-
   border-radius: 6px;
-
   cursor: pointer;
-
   margin-top: 15px;
-
   font-weight: 600;
-
   transition: background 0.2s;
-
 }
 
-
-
 .btn-cerrar:hover {
-
   background-color: #e65100;
-
 }
 
 
 
 @keyframes modalFadeIn {
-
   from {
-
     opacity: 0;
-
     transform: scale(0.9);
-
   }
-
-
 
   to {
-
     opacity: 1;
-
     transform: scale(1);
-
   }
-
 }

@@ -4,6 +4,8 @@ import com.archivo.backend.jwt.JwtAuthenticationFilter;
 import com.archivo.backend.jwt.JwtEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager; // Importación necesaria
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration; // Importación necesaria
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -20,19 +22,24 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
-
 public class SecurityConfig {
+
+    // 🔑 CORRECCIÓN 1: Exponer el AuthenticationManager como un Bean
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
+    }
 
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/login", "/auth/register", "/auth/roles", "/auth/sedes-nombres")
+                        .requestMatchers("/auth/login", "/auth/register", "/auth/roles", "/auth/sedes-nombres",
+                                "/auth/sedes")
                         .permitAll()
-                        // .requestMatchers("/auth/register").hasRole("ADMIN")
                         .anyRequest().authenticated())
-                .httpBasic(Customizer.withDefaults())
+                .httpBasic(AbstractHttpConfigurer::disable)
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtEntryPoint()))
                 .addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();

@@ -1,3 +1,5 @@
+// src/app/core/services/data-exchange.service.ts
+
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -8,51 +10,57 @@ import { TransactionRecord } from '../models/transaction-record.model';
     providedIn: 'root'
 })
 export class DataExchangeService {
-    // Asegúrate de que HttpClientModule esté importado en tu AppModule o que tu componente use provideHttpClient()
     private http = inject(HttpClient);
-    // URL base de tu backend de Spring Boot
-    private apiUrl = 'http://localhost:8080/api/files';
+
+    // URL base de tu backend de Spring Boot, ajustada a /api/archivos
+    private urlApi = 'http://localhost:8080/api/archivos';
 
     /**
      * 📤 Envía el archivo Excel al backend para su procesamiento.
+     * Mapea al endpoint POST /api/archivos/subir
      */
-    uploadFile(file: File): Observable<any> {
+    subirArchivo(archivo: File): Observable<any> {
         const formData = new FormData();
-        formData.append('file', file, file.name);
+        // CRÍTICO: La clave 'file' debe coincidir con @RequestParam("file") de Spring
+        formData.append('file', archivo, archivo.name);
 
-        return this.http.post(`${this.apiUrl}/upload`, formData);
+        return this.http.post(`${this.urlApi}/subir`, formData);
     }
 
     /**
      * 📜 Obtiene el historial de todas las transacciones de carga.
+     * Mapea al endpoint GET /api/archivos/historial
      */
-    getHistory(): Observable<TransactionRecord[]> {
-        return this.http.get<TransactionRecord[]>(`${this.apiUrl}/history`);
+    obtenerHistorial(): Observable<TransactionRecord[]> {
+        return this.http.get<TransactionRecord[]>(`${this.urlApi}/historial`);
     }
 
     /**
      * ❌ Descarga el archivo Excel con los registros que contuvieron errores.
+     * Mapea al endpoint GET /api/archivos/errores/{idRegistro}
      */
-    downloadErrors(recordId: number): Observable<Blob> {
-        return this.http.get(`${this.apiUrl}/errors/${recordId}`, {
+    descargarErrores(idRegistro: number): Observable<Blob> {
+        return this.http.get(`${this.urlApi}/errores/${idRegistro}`, {
             responseType: 'blob'
         });
     }
 
     /**
      * ⬇️ Exporta el historial de transacciones (el contenido de la tabla del log).
+     * Mapea al endpoint GET /api/archivos/exportar/log
      */
-    exportHistoryLog(): Observable<Blob> {
-        return this.http.get(`${this.apiUrl}/export/log`, {
+    exportarLogHistorial(): Observable<Blob> {
+        return this.http.get(`${this.urlApi}/exportar/log`, {
             responseType: 'blob'
         });
     }
 
     /**
      * ⬇️ Exporta TODOS los registros clínicos de la base de datos (Data).
+     * Mapea al endpoint GET /api/archivos/exportar/datos
      */
-    exportClinicalData(): Observable<Blob> {
-        return this.http.get(`${this.apiUrl}/export/data`, {
+    exportarDatosClinicos(): Observable<Blob> {
+        return this.http.get(`${this.urlApi}/exportar/datos`, {
             responseType: 'blob'
         });
     }

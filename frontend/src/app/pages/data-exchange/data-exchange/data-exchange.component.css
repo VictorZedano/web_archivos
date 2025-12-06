@@ -1,6 +1,6 @@
 /* src/app/data-exchange/data-exchange.component.css */
 
-/* Variables para colores (sin cambios) */
+/* Variables y estilos generales se mantienen igual */
 :root {
     --primary-color: #007bff;
     --secondary-color: #6c757d;
@@ -11,148 +11,89 @@
     --border-color: #dee2e6;
     --background-light: #f8f9fa;
     --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --compact-spacing: 12px;
+    --section-gap: 30px;
+    /* Incrementamos ligeramente el espacio de separación a 30px */
 }
 
 .data-exchange-container {
     padding: 20px;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-h2,
-h3 {
+h2 {
     color: #343a40;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
+    font-size: 2em;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
 }
 
-/* Estilo general de las secciones/tarjetas (sin cambios) */
+h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: var(--compact-spacing);
+    font-size: 1.3em;
+}
+
+/* Estilo general de las secciones/tarjetas */
 .card {
     background-color: #ffffff;
     border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 25px;
+    padding: var(--compact-spacing);
     box-shadow: var(--card-shadow);
 }
 
-/* ... (El resto de estilos de contenedores y texto son iguales) ... */
+/* ------------------------------------------- */
+/* --- ESTRUCTURA DE LAYOUT (GRID)--- */
+/* ------------------------------------------- */
 
-/* --- Botones --- */
-
-/* Centrado de botones en su contenedor (sin cambios) */
-.action-buttons {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-}
-
-
-.export-group {
-    margin-top: 15px;
-    padding-top: 5px;
-}
-
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s ease, opacity 0.2s ease;
-}
-
-/* 🚀 AJUSTE CRÍTICO: FORZANDO VISIBILIDAD CON !important */
-
-.btn-primary {
-    background-color: rgb(1, 111, 255);
-    color: white;
-}
-
-.btn-primary:hover:not([disabled]) {
-    background-color: rgb(1, 111, 255);
-}
-
-.export-data-btn {
-    /* Forzamos el color de fondo */
-    background-color: rgb(1, 111, 255);
-    /* Forzamos el color de texto */
-    color: white;
-}
-
-.export-data-btn:hover:not([disabled]) {
-    background-color: #004f8b;
-}
-
-.btn-secondary {
-    /* Forzamos el color de fondo */
-    background-color: rgb(1, 111, 255);
-    /* Forzamos el color de texto */
-    color: white;
-}
-
-.btn-secondary:hover:not([disabled]) {
-    background-color: #004f8b;
-}
-
-.btn-primary[disabled],
-.btn-secondary[disabled] {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.btn-download {
-    background: none;
-    color: var(--primary-color);
-    padding: 5px 10px;
-    border: 1px solid var(--primary-color);
-    font-size: 0.9em;
-}
-
-.btn-download:hover {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-/* ----------------------------------------------------- */
-/* --- EL RESTO DE LOS ESTILOS (MARCO, TABLA, ALERTAS) --- */
-/* ----------------------------------------------------- */
-
-/* ESTILO PARA EL MARCO DE CARGA MEJORADO */
-.bordered-box {
-    border: 1px solid #ced4da;
-    /* Borde sólido */
-    border-radius: 6px;
-    padding: 15px;
+.main-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    /* CRÍTICO: Margen inferior para separar la sección 3 (Historial) */
     margin-bottom: 20px;
 }
 
-.bordered-box h4 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: #495057;
-    border-bottom: 1px dashed #e9ecef;
-    padding-bottom: 5px;
-    font-size: 1.1em;
+/* 🎯 Ajuste CRÍTICO: Asegurar que no haya margen superior en la sección 3 */
+.history-section {
+    min-height: 450px;
+    margin-top: 0 !important;
+    margin-bottom: 20px;
+    /* Añadimos un pequeño margen inferior general */
 }
 
-/* --- ZONA DE CARGA (Dropzone) --- */
+/* Reducimos el padding interno de las secciones superiores */
+.upload-section,
+.export-section {
+    padding: 15px;
+}
+
+
+/* --- ZONA DE CARGA (Dropzone) Compacta --- */
 .file-drop-area {
-    border: 3px dashed var(--border-color);
-    border-radius: 8px;
-    padding: 40px 20px;
+    border: 2px dashed var(--primary-color);
+    border-radius: 6px;
+    padding: 20px 10px;
     text-align: center;
     cursor: pointer;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
     background-color: var(--background-light);
+    margin-bottom: 15px;
+    /* CRÍTICO: Separamos el dropzone de los botones */
 }
 
 .file-drop-area:hover {
-    border-color: var(--primary-color);
+    background-color: #e9f0f7;
+    border-color: #0056b3;
 }
 
 .drop-label {
     display: block;
-    font-size: 1.1em;
+    font-size: 0.95em;
     color: var(--secondary-color);
     cursor: pointer;
 }
@@ -162,13 +103,71 @@ button {
     font-weight: bold;
 }
 
-/* --- Alertas de Mensaje (sin cambios) --- */
+/* --- Botones --- */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    margin-top: var(--compact-spacing);
+}
+
+.export-section .action-buttons {
+    justify-content: flex-end;
+}
+
+button {
+    padding: 9px 16px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-primary,
+.btn-secondary,
+.export-data-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover:not([disabled]),
+.btn-secondary:hover:not([disabled]),
+.export-data-btn:hover:not([disabled]) {
+    background-color: #0056b3;
+}
+
+.btn-primary[disabled],
+.btn-secondary[disabled],
+.export-data-btn[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Botón de Descarga de Errores (dentro de la tabla) */
+.btn-download {
+    background: none;
+    color: var(--danger-color);
+    padding: 4px 8px;
+    border: 1px solid var(--danger-color);
+    font-size: 0.8em;
+    transition: all 0.2s ease;
+}
+
+.btn-download:hover {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+/* --- Alertas de Mensaje (Compactas) --- */
 .alert {
-    padding: 10px 15px;
-    margin-bottom: 15px;
+    padding: 8px 12px;
+    margin-bottom: var(--compact-spacing);
+    margin-top: 0;
     border-radius: 4px;
     border-left: 5px solid;
-    font-weight: bold;
+    font-weight: 500;
+    font-size: 0.9em;
 }
 
 .alert.success {
@@ -183,20 +182,24 @@ button {
     border-color: var(--danger-color);
 }
 
-/* --- Tabla de Historial (sin cambios) --- */
+/* --- Tabla de Historial (Énfasis) --- */
 .table-scroll {
     overflow-x: auto;
+    max-height: 400px;
+    overflow-y: auto;
 }
 
 .transaction-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 15px;
+    /* CRÍTICO: Reducimos o eliminamos margen superior de la tabla */
+    margin-top: 5px;
+    font-size: 0.9em;
 }
 
 .transaction-table th,
 .transaction-table td {
-    padding: 12px 15px;
+    padding: 10px 12px;
     text-align: left;
     border-bottom: 1px solid var(--border-color);
     vertical-align: middle;
@@ -206,6 +209,9 @@ button {
     background-color: var(--background-light);
     color: #495057;
     font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .transaction-table tbody tr:hover {
@@ -218,12 +224,12 @@ button {
     font-style: italic;
 }
 
-/* --- Etiquetas de Estado (Badges) (sin cambios) --- */
+/* --- Etiquetas de Estado (Badges) --- */
 .status-badge {
     display: inline-block;
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 0.8em;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.75em;
     font-weight: 700;
     text-transform: uppercase;
 }

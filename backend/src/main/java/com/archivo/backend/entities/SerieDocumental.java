@@ -3,8 +3,8 @@ package com.archivo.backend.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "sede")
-public class Sede {
+@Table(name = "serie_documental")
+public class SerieDocumental {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,15 +12,6 @@ public class Sede {
 
     @Column(name = "nombre", nullable = false, unique = true, length = 50)
     private String nombre;
-
-    /**
-     * CORRECCIÓN: Aumentamos la longitud a 255 para evitar el error de
-     * truncamiento.
-     * El log indicaba que había una dirección más larga de 50 (o 100) caracteres en
-     * la BD.
-     */
-    @Column(name = "direccion", length = 255) // Cambiado de 100 a 255
-    private String direccion;
 
     // Getters y Setters
     public Integer getId() {
@@ -37,13 +28,5 @@ public class Sede {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
     }
 }

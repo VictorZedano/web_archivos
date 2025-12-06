@@ -3,14 +3,14 @@ package com.archivo.backend.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "area_interna")
-public class AreaInterna {
+@Table(name = "nombre_documento_catalogo")
+public class NombreDocumentoCatalogo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "nombre", nullable = false, unique = true, length = 50)
+    @Column(name = "nombre", nullable = false, unique = true, length = 150)
     private String nombre;
 
     // Getters y Setters
